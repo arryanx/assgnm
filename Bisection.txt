@@ -1,0 +1,45 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+#define esp 0.00001
+double func(double x)
+{
+    double y = x * x - 3;
+    return y;
+}
+void bisection(double a, double b)
+{
+    if (func(a) * func(b) >= 0)
+    {
+        cout << "you have entered wrong values" << endl;
+        return;
+    }
+    double c = a;
+    while (b - a >= esp)
+    {
+        c = (a + b) / 2;
+        if (func(c) == 0)
+        {
+            break;
+        }
+        else if (func(c).func(b) < 0)
+        {
+            a = c;
+        }
+        else
+        {
+            b = c;
+        }
+    }
+    cout << "the root is " << c << endl;
+}
+int main()
+{
+    double a, b;
+    cout << "enter the first number ";
+    cin >> a;
+    cout << "enter the second number ";
+    cin >> b;
+    bisection(a, b);
+    return 0;
+}

@@ -1,0 +1,24 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int n = 4;
+    float x[n] = {5, 6, 9, 11};
+    float y[n] = {12, 13, 14, 16};
+    float k = 10, temp, sum = 0;
+    for (int i = 0; i < n; i++)
+    {
+        temp = 1;
+        for (int j = 0; j < n; j++)
+        {
+            if (i != j)
+            {
+                temp = temp * ((k - x[j]) / (x[i] - x[j]));
+            }
+        }
+        sum = sum + temp * y[i];
+    }
+    cout << "answer is " << sum;
+    return 0;
+}

@@ -1,0 +1,50 @@
+#include <iostream>
+ #include <bits/stdc++.h>
+ using namespace std;
+ int main()
+ {
+     int n = 3;
+     float mat[n][n] = {{1, 2, 0}, {2, 1, 0}, {0, 0, -1}};
+     float vec[n] = {1, 0, 0};
+     cout << setprecision(3) << fixed;
+     float error = 0.001;
+     float vec1[n];
+     float temp = 0, lambda_new;
+     float lambda_old = 1;
+ up:
+     for (int i = 0; i < n; i++)
+     {
+         temp = 0;
+         for (int j = 0; j < n; j++)
+         {
+             temp = temp + mat[i][j] * vec[j];
+         }
+         vec1[i] = temp;
+     }
+     for (int i = 0; i <= n; i++)
+     {
+         vec[i] = vec1[i];
+     }
+     lambda_new = fabs(vec[0]);
+     for (int i = 0; i < n; i++)
+     {
+         if (fabs(vec[i]) > lambda_new)
+             lambda_new = fabs(vec[i]);
+     }
+     for (int i = 0; i < n; i++)
+     {
+         vec[i] = vec[i] / lambda_new;
+     }
+     if (fabs(lambda_new - lambda_old) > error)
+     {
+         lambda_old = lambda_new;
+         goto up;
+     }
+     cout << "the largest eigen value is " << lambda_new << endl;
+     cout << "the eigen vector is" << endl;
+     for (int i = 0; i < n; i++)
+     {
+         cout << vec[i] << " ";
+     }
+     return 0;
+ }

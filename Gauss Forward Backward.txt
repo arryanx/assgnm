@@ -1,0 +1,45 @@
+c++ program for gauss forward interpolation
+ #include <iostream>
+ #include <conio.h>
+ #include <math.h>
+ #include <bits/stdc++.h>
+ using namespace std;
+ int main()
+ {
+     int num = 5;
+     int i, j;
+     float arr_x[5] = {0, 4, 8, 12, 16};
+     float arr_y[5] = {14, 24, 32, 35, 40};
+     float x = 9, nr, dr;
+     float y = 0, h;
+     float p, y1, y2, y3, y4;
+     float diff[20][20];
+     cout << "GAUSS' FORWARD INTERPOLATION FORMULA !! " << endl;
+     h = arr_x[1] - arr_x[0];
+     for (i = 0; i < num - 1; i++)
+     {
+         diff[i][1] = arr_y[i + 1] - arr_y[i];
+     }
+     for (j = 2; j <= 4; j++)
+     {
+         for (i = 0; i < num - j; i++)
+         {
+             diff[i][j] = diff[i + 1][j - 1] - diff[i][j - 1];
+         }
+     }
+     i = 0;
+     do
+     {
+         i++;
+     } while (arr_x[i] < x);
+     i--;
+     p = (x - arr_x[i]) / h;
+     y1 = p * diff[i][1];
+     y2 = p * (p - 1) * diff[i - 1][2] / 2;
+     y3 = (p + 1) * p * (p - 1) * diff[i - 2][3] / 6;
+     y4 = (p + 1) * p * (p - 1) * (p - 2) * diff[i - 3][4] / 24;
+     y = arr_y[i] + y1 + y2 + y3 + y4;
+     cout << "the value of x is " << x << " and the value of y is " << y;
+     getch();
+     return 0;
+ }
