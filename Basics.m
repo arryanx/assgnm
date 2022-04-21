@@ -1,0 +1,12 @@
+a=10;
+b=20;
+c = a+b;
+d = a*b;
+e = a/b;
+f = a\b;
+g = plus(a,b);
+h = minus(a,b);
+i = times(a,b);
+j = power(a,b);
+k = prod(1:10);
+m = sum(1:10);
